@@ -26,3 +26,17 @@
 **            v.1.1.0 seperate the code to implementable feature
 **
 *********************************************************************************************H*/
+
+/// @brief Reconnects the WiFi uses InitWiFi if the connection has been removed
+/// @return Returns true as soon as a connection has been established again
+bool reconnect() {
+  // Check to ensure we aren't connected yet
+  const wl_status_t status = WiFi.status();
+  if (status == WL_CONNECTED) {
+    return true;
+  }
+
+  // If we aren't establish a new connection to the given WiFi network
+  InitWiFi();
+  return true;
+}
